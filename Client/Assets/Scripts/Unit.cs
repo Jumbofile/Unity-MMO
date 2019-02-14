@@ -37,6 +37,6 @@ public class Unit : MonoBehaviour {
 
     public void MoveTo(Vector3 pos)
     {
-        GetComponent<NavMeshAgent>().SetDestination(pos);
+        transform.position = Vector3.Lerp(transform.position, pos, 1.0f);
     }
 }

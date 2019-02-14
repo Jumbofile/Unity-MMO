@@ -97,6 +97,7 @@ public class Client : MonoBehaviour
                 float parsedY = float.Parse(aData[4], culture);
                 float parsedZ = float.Parse(aData[5], culture);
                 //go.GetComponent<NavMeshAgent>().Warp(new Vector3(parsedX, parsedY, parsedZ));
+                go.transform.position = new Vector3(parsedX, parsedY, parsedZ);
                 Unit un = go.AddComponent<Unit>();
                 unitsOnMap.Add(un);
                 int parsed;
@@ -156,7 +157,7 @@ public class Client : MonoBehaviour
                     }
                     if (!didFind) //add non-existing (at client) units
                     {
-                        prefab = Resources.Load("Prefabs/Unit1") as GameObject;
+                        prefab = Resources.Load("Prefabs/OtherPlayer") as GameObject;
                         go = Instantiate(prefab);
                         un = go.AddComponent<Unit>();
                         unitsOnMap.Add(un);
@@ -164,7 +165,8 @@ public class Client : MonoBehaviour
                         parsedX = float.Parse(aData[3+i*4], culture);
                         parsedY = float.Parse(aData[4+i*4], culture);
                         parsedZ = float.Parse(aData[5+i*4], culture);
-                        go.GetComponent<NavMeshAgent>().Warp(new Vector3(parsedX, parsedY, parsedZ));
+                        go.transform.position = new Vector3(parsedX, parsedY, parsedZ);
+                        //go.GetComponent<NavMeshAgent>().Warp(new Vector3(parsedX, parsedY, parsedZ));
                     }
 
                 }
