@@ -91,21 +91,24 @@ public class Client : MonoBehaviour
                 SceneManager.LoadScene("ClientGameView");
                 break;
             case "UnitSpawned":
-                GameObject prefab = Resources.Load("Prefabs/Unit1") as GameObject;
+                GameObject prefab = Resources.Load("Prefabs/OtherPlayer") as GameObject;
                 GameObject go = Instantiate(prefab);
                 float parsedX = float.Parse(aData[3], culture);
                 float parsedY = float.Parse(aData[4], culture);
                 float parsedZ = float.Parse(aData[5], culture);
-                go.GetComponent<NavMeshAgent>().Warp(new Vector3(parsedX, parsedY, parsedZ));
+                //go.GetComponent<NavMeshAgent>().Warp(new Vector3(parsedX, parsedY, parsedZ));
+                go.transform.position = new Vector3(parsedX, parsedY, parsedZ);
                 Unit un = go.AddComponent<Unit>();
                 unitsOnMap.Add(un);
                 int parsed;
                 Int32.TryParse(aData[2], out parsed);
                 un.unitID = parsed;
 
+                //if the unit spawned is owned by the player pass in the bool and activate the camera
                 if (aData[1] == clientName)
                 {
                     un.isPlayersUnit = true;
+                    go.transform.GetChild(0).gameObject.SetActive(true);
                 }
                 else
                 {
@@ -154,7 +157,7 @@ public class Client : MonoBehaviour
                     }
                     if (!didFind) //add non-existing (at client) units
                     {
-                        prefab = Resources.Load("Prefabs/Unit1") as GameObject;
+                        prefab = Resources.Load("Prefabs/OtherPlayer") as GameObject;
                         go = Instantiate(prefab);
                         un = go.AddComponent<Unit>();
                         unitsOnMap.Add(un);
@@ -162,7 +165,8 @@ public class Client : MonoBehaviour
                         parsedX = float.Parse(aData[3+i*4], culture);
                         parsedY = float.Parse(aData[4+i*4], culture);
                         parsedZ = float.Parse(aData[5+i*4], culture);
-                        go.GetComponent<NavMeshAgent>().Warp(new Vector3(parsedX, parsedY, parsedZ));
+                        go.transform.position = new Vector3(parsedX, parsedY, parsedZ);
+                        //go.GetComponent<NavMeshAgent>().Warp(new Vector3(parsedX, parsedY, parsedZ));
                     }
 
                 }
