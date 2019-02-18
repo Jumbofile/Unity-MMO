@@ -1034,6 +1034,7 @@ namespace Server.DatabaseDataSetTableAdapters {
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual global::System.Nullable<int> Authenticate(string Param1, string Param2) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
+            
             if ((Param1 == null)) {
                 command.Parameters[0].Value = global::System.DBNull.Value;
             }

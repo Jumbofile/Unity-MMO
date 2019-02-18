@@ -329,7 +329,18 @@ namespace Server
         public static bool AuthenticateUser(string username, string password)
         {
             int result = 0;
-            result = (int)Program.form.usersTableAdapter.Authenticate(username,password);
+            result = (int)Program.form.usersTableAdapter.Authenticate(username,BCrypt.HashPassword(password,BCrypt.GenerateSalt()));
+            if (result == 1)
+            {
+                return true;
+            }
+            else return false;
+        }
+
+        public static bool CreateUser(string username, string password)
+        {
+            int result = 0;
+            result = (int)Program.form.usersTableAdapter.Insert(username, BCrypt.HashPassword(password, BCrypt.GenerateSalt()));
             if (result == 1)
             {
                 return true;
