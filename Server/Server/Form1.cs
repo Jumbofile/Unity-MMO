@@ -35,5 +35,18 @@ namespace Server
             label1.Text = "Server's IP address is: " + myIP;
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            // Create a new instance of the Form2 class
+            CreateUser registerForm = new CreateUser();
+
+            // Show the settings form
+            registerForm.Show();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

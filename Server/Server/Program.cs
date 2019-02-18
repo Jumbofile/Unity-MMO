@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -199,7 +201,9 @@ namespace Server
         {
             string[] aData = data.Split('|');
 
-            //login
+            /***
+             * LOGIN INFORMATION PACKET SENT FROM THE SERVER
+             ***/
             if (c.clientName != null)
             {
                 Program.form.DebugTextBox.Text += "\r\nClient '" + c.clientName + "' sent command: " + data;
@@ -336,26 +340,102 @@ namespace Server
     //NOTE: never store sensitive user data like passwords like this in an actual product. use something like hashing... 
     public static class Database
     {
+        private static string getUserPassword(string username)
+        {
+            string pw = null;
+
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True;");
+            con.Open();
+
+            SqlCommand command = new SqlCommand("SELECT Password from Users WHERE Name = @user", con);
+            command.Parameters.AddWithValue("@user", username);
+            // int result = command.ExecuteNonQuery();
+            using (SqlDataReader reader = command.ExecuteReader())
+            {
+                if (reader.Read())
+                {
+                    pw = String.Format("{0}", reader["Password"]);
+                }
+            }
+
+            con.Close();
+            //con.Close();
+            return pw;
+        }
+
+        private static string userExists(string username)
+        {
+            string un = null;
+
+            try
+            {
+                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True;");
+                con.Open();
+
+                SqlCommand command = new SqlCommand("SELECT Name from Users WHERE Name = @user", con);
+                command.Parameters.AddWithValue("@user", username);
+                // int result = command.ExecuteNonQuery();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        un = String.Format("{0}", reader["Name"]);
+                    }
+                }
+
+                con.Close();
+            }catch(Exception e)
+            {
+                un = null;
+            }
+            //con.Close();
+            return un;
+        }
+
         public static bool AuthenticateUser(string username, string password)
         {
-            int result = 0;
-            result = (int)Program.form.usersTableAdapter.Authenticate(username,BCrypt.HashPassword(password,BCrypt.GenerateSalt()));
+            //int result = 0;
+            if (userExists(username) != null) {
+                return BCrypt.CheckPassword(password, getUserPassword(username));
+            }
+            else
+            {
+                return false;
+            }
+            /*result = (int)Program.form.usersTableAdapter.Authenticate(username,BCrypt.HashPassword(password,BCrypt.GenerateSalt()));
             if (result == 1)
             {
                 return true;
             }
-            else return false;
+            else return false;*/
         }
 
         public static bool CreateUser(string username, string password)
         {
-            int result = 0;
-            result = (int)Program.form.usersTableAdapter.Insert(username, BCrypt.HashPassword(password, BCrypt.GenerateSalt()));
-            if (result == 1)
+            if(userExists(username) == null)
             {
+                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True;");
+                con.Open();
+
+                SqlCommand command = new SqlCommand("INSERT INTO Users(Name, password) VALUES (@user, @pass)", con);
+                command.Parameters.AddWithValue("@user", username);
+                command.Parameters.AddWithValue("@pass", BCrypt.HashPassword(password, BCrypt.GenerateSalt()));
+                // int result = command.ExecuteNonQuery();
+                try
+                {
+                    command.ExecuteNonQuery();
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e);
+                    return false;
+                }
+
+                    con.Close();
                 return true;
             }
-            else return false;
+            
+            return true;
         }
     }
 }
