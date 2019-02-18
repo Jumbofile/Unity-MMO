@@ -13,6 +13,7 @@ public class PlayerControls : MonoBehaviour {
     public static GameObject map;
     public static Client client;
     public Button spawnButton;
+    public Text userName;
 
     private void Awake()
     {
@@ -35,7 +36,8 @@ public class PlayerControls : MonoBehaviour {
             Debug.Log("Couldn't find map");
             return;
         }
-
+        Debug.Log(client.getUserName());
+        userName.text = client.getUserName();
         client.Send("SynchronizeRequest|");
     }
 
@@ -45,6 +47,7 @@ public class PlayerControls : MonoBehaviour {
     {
         client.Send("SpawnUnit|");
         spawnButton.interactable = false;
+
     }
 }
 

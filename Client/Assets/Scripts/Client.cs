@@ -24,13 +24,13 @@ public class Client : MonoBehaviour
     public InputField passwordInputField;
     private List<Unit> unitsOnMap = new List<Unit>();
     private CultureInfo culture = (CultureInfo)CultureInfo.CurrentCulture.Clone();
+    
 
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
         culture.NumberFormat.NumberDecimalSeparator = ".";
     }
-
     public bool ConnectToServer(string host, int port)
     {
         if (socketReady)
@@ -109,6 +109,7 @@ public class Client : MonoBehaviour
                 {
                     un.isPlayersUnit = true;
                     go.transform.GetChild(0).gameObject.SetActive(true);
+
                 }
                 else
                 {
@@ -166,7 +167,6 @@ public class Client : MonoBehaviour
                         parsedY = float.Parse(aData[4+i*4], culture);
                         parsedZ = float.Parse(aData[5+i*4], culture);
                         go.transform.position = new Vector3(parsedX, parsedY, parsedZ);
-                        //go.GetComponent<NavMeshAgent>().Warp(new Vector3(parsedX, parsedY, parsedZ));
                     }
 
                 }
@@ -194,8 +194,9 @@ public class Client : MonoBehaviour
         }
     }
 
- 
-
+    
+    
+    //Make sure the socket gets closed
     private void OnApplicationQuit()
     {
         CloseSocket();
@@ -215,7 +216,7 @@ public class Client : MonoBehaviour
         socketReady = false;
     }
 
-
+    //Login Button
     public void ConnectToServerButton()
     {
         password = passwordInputField.text;
@@ -229,6 +230,10 @@ public class Client : MonoBehaviour
         {
             Debug.Log(e.Message);
         }
+    }
+    public string getUserName(){
+        Debug.Log(clientName);
+        return clientName;
     }
 }
 

@@ -985,7 +985,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0297c1d9dc5137043b0bde39f96ff5b2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 15.64
+      value: 15.81
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 0297c1d9dc5137043b0bde39f96ff5b2, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1467,7 +1467,7 @@ Camera:
   m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BackGroundColor: {r: 0.9044118, g: 0.968357, b: 1, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -1500,8 +1500,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 443642134}
-  m_LocalRotation: {x: -0.06403797, y: 0, z: 0, w: -0.99794745}
-  m_LocalPosition: {x: 264.7, y: 0.5400009, z: -19.8}
+  m_LocalRotation: {x: 0.35802507, y: 0.14397582, z: 0.05597778, w: -0.92084503}
+  m_LocalPosition: {x: 284.07144, y: -1.2520409, z: 21.315384}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1815,6 +1815,18 @@ Prefab:
     - target: {fileID: 400006, guid: 843740dbe549a4a6ba9556d1b80001f5, type: 2}
       propertyPath: m_LocalScale.z
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 843740dbe549a4a6ba9556d1b80001f5, type: 2}
+      propertyPath: clearColor.r
+      value: 0.9044118
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 843740dbe549a4a6ba9556d1b80001f5, type: 2}
+      propertyPath: clearColor.g
+      value: 0.968357
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400004, guid: 843740dbe549a4a6ba9556d1b80001f5, type: 2}
+      propertyPath: clearColor.b
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 843740dbe549a4a6ba9556d1b80001f5, type: 2}
@@ -3477,8 +3489,8 @@ MonoBehaviour:
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 0.4
   m_ReferenceResolution: {x: 1920, y: 1080}
-  m_ScreenMatchMode: 1
-  m_MatchWidthOrHeight: 0.301
+  m_ScreenMatchMode: 0
+  m_MatchWidthOrHeight: 1
   m_PhysicalUnit: 3
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
@@ -3563,7 +3575,7 @@ Camera:
   m_Enabled: 0
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 1}
+  m_BackGroundColor: {r: 0.9044118, g: 0.968357, b: 1, a: 1}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -3596,8 +3608,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1667088381}
-  m_LocalRotation: {x: -0.06403797, y: 0, z: 0, w: -0.99794745}
-  m_LocalPosition: {x: 264.7, y: 2.3400002, z: -12.9}
+  m_LocalRotation: {x: 0.35802507, y: 0.14397582, z: 0.05597778, w: -0.92084503}
+  m_LocalPosition: {x: 284.07144, y: -1.2520409, z: 21.315384}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}

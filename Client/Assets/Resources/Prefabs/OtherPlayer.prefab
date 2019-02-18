@@ -40,12 +40,11 @@ GameObject:
   - component: {fileID: 33392572248664204}
   - component: {fileID: 136771780633261692}
   - component: {fileID: 23828182094435802}
-  - component: {fileID: 114307238331338980}
   - component: {fileID: 54725587308982000}
   - component: {fileID: 195011679907038662}
   m_Layer: 0
   m_Name: OtherPlayer
-  m_TagString: Untagged
+  m_TagString: Unit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -176,20 +175,6 @@ AudioListener:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1515123066213214}
   m_Enabled: 1
---- !u!114 &114307238331338980
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1630737071038676}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20c783a160b438049821425dcb33efdb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 8
-  unitID: 0
-  isPlayersUnit: 0
 --- !u!124 &124904460121471358
 Behaviour:
   m_ObjectHideFlags: 1
@@ -216,7 +201,7 @@ NavMeshAgent:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1630737071038676}
-  m_Enabled: 1
+  m_Enabled: 0
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 30
