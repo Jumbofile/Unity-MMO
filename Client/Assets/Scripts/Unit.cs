@@ -5,28 +5,38 @@ using UnityEngine.AI;
 
 public class Unit : MonoBehaviour {
 
+    public float speed = 10.0f;
     public int unitID;
     public bool isPlayersUnit;
 
     void Update()
     {
-        if ((Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1)) && isPlayersUnit)
-        {
-            RaycastHit hit;
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            if (PlayerControls.map.GetComponent<Collider>().Raycast(ray, out hit, Mathf.Infinity))
-            {
-                float x = hit.point.x;
-                float y = hit.point.y;
-                float z = hit.point.z;
-                GetComponent<NavMeshAgent>().SetDestination(hit.point);
-                PlayerControls.client.Send("Moving|" + unitID + "|" + x + "|" + y + "|" + z + "|");
-            }
-        }
+        if(isPlayersUnit){
+			Vector3 pos = transform.position;
+
+			if (Input.GetKey ("w")) {
+				pos.z += speed * Time.deltaTime;
+			}
+			if (Input.GetKey ("s")) {
+				pos.z -= speed * Time.deltaTime;
+			}
+			if (Input.GetKey ("d")) {
+				pos.x += speed * Time.deltaTime;
+			}
+			if (Input.GetKey ("a")) {
+				pos.x -= speed * Time.deltaTime;
+			}
+
+			transform.position = pos;
+
+			if(Input.anyKey){
+				PlayerControls.client.Send("Moving|" + unitID + "|" + pos.x + "|" + pos.y + "|" + pos.z + "|");
+			}
+		}
     }
 
     public void MoveTo(Vector3 pos)
     {
-        GetComponent<NavMeshAgent>().SetDestination(pos);
+        transform.position = Vector3.Lerp(transform.position, pos, 0.5f);
     }
 }

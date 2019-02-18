@@ -39,13 +39,23 @@ namespace Server
 
     public class ServerAction
     {
+        //server port
         private int port = 6321;
 
+        //create client lists
         private List<ServerClient> clients = new List<ServerClient>();
         private List<ServerClient> disconnectList = new List<ServerClient>();
+
+        //Create TCP listener
         private TcpListener server;
+
+        //is server started
         private bool serverStarted;
+
+        //create unit lists
         private List<Unit> units = new List<Unit>();
+
+        //resync bool
         private bool ResyncNeeded = false;
 
         //the constructor, adds the listener
