@@ -344,7 +344,7 @@ namespace Server
         {
             string pw = null;
 
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True;");
+            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\db\Database.mdf;Integrated Security=True;");
             con.Open();
 
             SqlCommand command = new SqlCommand("SELECT Password from Users WHERE Name = @user", con);
@@ -369,7 +369,7 @@ namespace Server
 
             try
             {
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True;");
+                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\db\Database.mdf;Integrated Security=True;");
                 con.Open();
 
                 SqlCommand command = new SqlCommand("SELECT Name from Users WHERE Name = @user", con);
@@ -414,7 +414,7 @@ namespace Server
         {
             if(userExists(username) == null)
             {
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\Database.mdf;Integrated Security=True;");
+                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\db\Database.mdf;Integrated Security=True;");
                 con.Open();
 
                 SqlCommand command = new SqlCommand("INSERT INTO Users(Name, password) VALUES (@user, @pass)", con);
