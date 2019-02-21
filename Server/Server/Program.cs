@@ -340,11 +340,12 @@ namespace Server
     //NOTE: never store sensitive user data like passwords like this in an actual product. use something like hashing... 
     public static class Database
     {
+        private static string sqlSource = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\db\Database.mdf;Integrated Security=True;";
         private static string getUserPassword(string username)
         {
             string pw = null;
 
-            SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\db\Database.mdf;Integrated Security=True;");
+            SqlConnection con = new SqlConnection(@sqlSource);
             con.Open();
 
             SqlCommand command = new SqlCommand("SELECT Password from Users WHERE Name = @user", con);
@@ -369,7 +370,7 @@ namespace Server
 
             try
             {
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\db\Database.mdf;Integrated Security=True;");
+                SqlConnection con = new SqlConnection(@sqlSource);
                 con.Open();
 
                 SqlCommand command = new SqlCommand("SELECT Name from Users WHERE Name = @user", con);
@@ -414,7 +415,7 @@ namespace Server
         {
             if(userExists(username) == null)
             {
-                SqlConnection con = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\db\Database.mdf;Integrated Security=True;");
+                SqlConnection con = new SqlConnection(@sqlSource);
                 con.Open();
 
                 SqlCommand command = new SqlCommand("INSERT INTO Users(Name, password) VALUES (@user, @pass)", con);
