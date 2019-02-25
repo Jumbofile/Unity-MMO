@@ -233,6 +233,7 @@ namespace Server
                     else
                     {
                         Program.form.DebugTextBox.Text += "\r\nUser authentication failed, client disconnected.";
+                        //Broadcast("FailedAuth|", c);
                         c.tcp.Close();
                         disconnectList.Add(c);
                     }
@@ -340,7 +341,10 @@ namespace Server
     //NOTE: never store sensitive user data like passwords like this in an actual product. use something like hashing... 
     public static class Database
     {
-        private static string sqlSource = "Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\db\Database.mdf;Integrated Security=True;";
+        //database string
+        private static string sqlSource = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\db\\Database.mdf;Integrated Security=True;";
+
+        //returns the users encrypted password
         private static string getUserPassword(string username)
         {
             string pw = null;
@@ -364,6 +368,7 @@ namespace Server
             return pw;
         }
 
+        //Checks if the user already exsists
         private static string userExists(string username)
         {
             string un = null;
@@ -411,6 +416,7 @@ namespace Server
             else return false;*/
         }
 
+        //Creats a user in the database
         public static bool CreateUser(string username, string password)
         {
             if(userExists(username) == null)

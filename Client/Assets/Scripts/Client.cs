@@ -19,7 +19,9 @@ public class Client : MonoBehaviour
     private NetworkStream stream;
     private StreamWriter writer;
     private StreamReader reader;
+    public Text errorText;
     public InputField clientNameInputField;
+    
     public InputField serverAddressInputField;
     public InputField passwordInputField;
     private List<Unit> unitsOnMap = new List<Unit>();
@@ -228,6 +230,8 @@ public class Client : MonoBehaviour
         }
         catch (Exception e)
         {
+            GameObject failedLoginText = errorText.gameObject;
+            failedLoginText.SetActive(true);
             Debug.Log(e.Message);
         }
     }
