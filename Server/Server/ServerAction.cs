@@ -1,44 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace Server
 {
-    static class Program
-    {
-        public static ServerAction server;
-        public static Form1 form;
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
-        [STAThread]
-        static void Main()
-        {
-
-            //use points for floats for easy compatibility with coordinates
-            CultureInfo customCulture = (CultureInfo)System.Threading.Thread.CurrentThread.CurrentCulture.Clone();
-            customCulture.NumberFormat.NumberDecimalSeparator = ".";
-            System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
-
-            server = new ServerAction();
-
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            form = new Form1();
-            Application.Run(form);
-
-        }
-
-    }
-
     public class ServerAction
     {
         //server port
@@ -75,7 +45,7 @@ namespace Server
                 Program.form.DebugTextBox.Text += "\r\n" + e.Message;
             }
         }
-      
+
 
         //called at every fixed time intervals => time can be adjusted at timer component's property
         //used to check if there's incoming data
@@ -123,7 +93,8 @@ namespace Server
                 ResyncNeeded = true;
             }
             //if some1 disconnected, tell it to other players as well.
-            if (ResyncNeeded){
+            if (ResyncNeeded)
+            {
                 SynchronizeUnits();
                 ResyncNeeded = false;
             }
@@ -237,11 +208,11 @@ namespace Server
                         c.tcp.Close();
                         disconnectList.Add(c);
                     }
-                    return; 
+                    return;
                 }
             }
 
-           
+
             //gameplay commands
             switch (aData[0])
             {
@@ -250,15 +221,15 @@ namespace Server
                     break;
                 case "SpawnUnit":
                     Unit unit = new Unit();
-                    
+
                     unit.clientName = c.clientName;
                     //give a new ID to the new units
-                    int newid=0;
+                    int newid = 0;
                     foreach (Unit u in units)
                     {
-                        if (u.unitID>=newid) { newid = u.unitID + 1; }
+                        if (u.unitID >= newid) { newid = u.unitID + 1; }
                     }
-                   
+
                     unit.unitID = newid;
                     unit.unitPositionX = 0.0f;
                     unit.unitPositionY = 0.0f;
@@ -292,7 +263,7 @@ namespace Server
                     break;
             }
         }
-        
+
         //syncing 1 client
         private void SynchronizeUnits(ServerClient c)
         {
@@ -316,25 +287,5 @@ namespace Server
             Broadcast(dataToSend, clients);
             Program.form.DebugTextBox.Text += "\r\nSynchronization request sent: " + dataToSend;
         }
-    }
-    
-
-    public class ServerClient
-    {
-        public string clientName;
-        public TcpClient tcp;
-        public ServerClient(TcpClient tcp)
-        {
-            this.tcp = tcp;
-        }
-    }
-
-    public class Unit
-    {
-        public string clientName;
-        public int unitID;
-        public float unitPositionX;
-        public float unitPositionY;
-        public float unitPositionZ;
     }
 }
