@@ -22,10 +22,19 @@ namespace Server
         {
             string username = usernameBox.Text;
             string password = passwordBox.Text;
+            string email = emailbox.Text;
 
-            bool succ = Database.CreateUser(username, password);
-
+            bool succ = Database.CreateUser(username, password, email);
+            if (succ)
+            {
+                this.Close;
+            }
             Console.WriteLine(succ);
+        }
+
+        private void CreateUser_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

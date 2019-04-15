@@ -33,11 +33,13 @@
             this.passwordBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.emailbox = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(72, 106);
+            this.button1.Location = new System.Drawing.Point(72, 165);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -77,11 +79,29 @@
             this.label2.TabIndex = 4;
             this.label2.Text = "Password";
             // 
+            // emailbox
+            // 
+            this.emailbox.Location = new System.Drawing.Point(12, 117);
+            this.emailbox.Name = "emailbox";
+            this.emailbox.Size = new System.Drawing.Size(199, 20);
+            this.emailbox.TabIndex = 5;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(14, 101);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(32, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Email";
+            // 
             // CreateUser
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(224, 141);
+            this.ClientSize = new System.Drawing.Size(224, 200);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.emailbox);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.passwordBox);
@@ -89,6 +109,7 @@
             this.Controls.Add(this.button1);
             this.Name = "CreateUser";
             this.Text = "Form2";
+            this.Load += new System.EventHandler(this.CreateUser_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -101,5 +122,7 @@
         private System.Windows.Forms.TextBox passwordBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox emailbox;
+        private System.Windows.Forms.Label label3;
     }
 }

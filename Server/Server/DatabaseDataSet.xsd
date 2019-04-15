@@ -147,7 +147,7 @@ WHERE        (Name = @Param1) AND (Password = @Param2)</CommandText>
   <xs:element name="DatabaseDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="DatabaseDataSet" msprop:Generator_UserDSName="DatabaseDataSet">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="Users" msprop:Generator_TableClassName="UsersDataTable" msprop:Generator_TableVarName="tableUsers" msprop:Generator_TablePropName="Users" msprop:Generator_RowDeletingName="UsersRowDeleting" msprop:Generator_RowChangingName="UsersRowChanging" msprop:Generator_RowEvHandlerName="UsersRowChangeEventHandler" msprop:Generator_RowDeletedName="UsersRowDeleted" msprop:Generator_UserTableName="Users" msprop:Generator_RowChangedName="UsersRowChanged" msprop:Generator_RowEvArgName="UsersRowChangeEvent" msprop:Generator_RowClassName="UsersRow">
+        <xs:element name="Users" msprop:Generator_TableClassName="UsersDataTable" msprop:Generator_TableVarName="tableUsers" msprop:Generator_RowChangedName="UsersRowChanged" msprop:Generator_TablePropName="Users" msprop:Generator_RowDeletingName="UsersRowDeleting" msprop:Generator_RowChangingName="UsersRowChanging" msprop:Generator_RowEvHandlerName="UsersRowChangeEventHandler" msprop:Generator_RowDeletedName="UsersRowDeleted" msprop:Generator_RowClassName="UsersRow" msprop:Generator_UserTableName="Users" msprop:Generator_RowEvArgName="UsersRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />
@@ -165,10 +165,11 @@ WHERE        (Name = @Param1) AND (Password = @Param2)</CommandText>
                   </xs:restriction>
                 </xs:simpleType>
               </xs:element>
+              <xs:element name="Email" msprop:Generator_ColumnVarNameInTable="columnEmail" msprop:Generator_ColumnPropNameInRow="Email" msprop:Generator_ColumnPropNameInTable="EmailColumn" msprop:Generator_UserColumnName="Email" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="Character" msprop:Generator_TableClassName="CharacterDataTable" msprop:Generator_TableVarName="tableCharacter" msprop:Generator_TablePropName="Character" msprop:Generator_RowDeletingName="CharacterRowDeleting" msprop:Generator_RowChangingName="CharacterRowChanging" msprop:Generator_RowEvHandlerName="CharacterRowChangeEventHandler" msprop:Generator_RowDeletedName="CharacterRowDeleted" msprop:Generator_UserTableName="Character" msprop:Generator_RowChangedName="CharacterRowChanged" msprop:Generator_RowEvArgName="CharacterRowChangeEvent" msprop:Generator_RowClassName="CharacterRow">
+        <xs:element name="Character" msprop:Generator_TableClassName="CharacterDataTable" msprop:Generator_TableVarName="tableCharacter" msprop:Generator_RowChangedName="CharacterRowChanged" msprop:Generator_TablePropName="Character" msprop:Generator_RowDeletingName="CharacterRowDeleting" msprop:Generator_RowChangingName="CharacterRowChanging" msprop:Generator_RowEvHandlerName="CharacterRowChangeEventHandler" msprop:Generator_RowDeletedName="CharacterRowDeleted" msprop:Generator_RowClassName="CharacterRow" msprop:Generator_UserTableName="Character" msprop:Generator_RowEvArgName="CharacterRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="Id" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:int" />

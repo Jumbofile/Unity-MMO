@@ -10,14 +10,14 @@ namespace Server
     public static class Database
     {
         //database string
-        private static string sqlSource = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\db\\Database.mdf;Integrated Security=True;";
+        private static string SqlSource = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=D:\\MMO\\server\\server\\Database.mdf;Integrated Security=True;";
 
         //returns the users encrypted password
         private static string getUserPassword(string username)
         {
             string pw = null;
 
-            SqlConnection con = new SqlConnection(@sqlSource);
+            SqlConnection con = new SqlConnection(@SqlSource);
             con.Open();
 
             SqlCommand command = new SqlCommand("SELECT Password from Users WHERE Name = @user", con);
@@ -43,7 +43,7 @@ namespace Server
 
             try
             {
-                SqlConnection con = new SqlConnection(@sqlSource);
+                SqlConnection con = new SqlConnection(@SqlSource);
                 con.Open();
 
                 SqlCommand command = new SqlCommand("SELECT Name from Users WHERE Name = @user", con);
@@ -87,20 +87,22 @@ namespace Server
         }
 
         //Creats a user in the database
-        public static bool CreateUser(string username, string password)
+        public static bool CreateUser(string username, string password, string email)
         {
             if (userExists(username) == null)
             {
-                SqlConnection con = new SqlConnection(@sqlSource);
+                SqlConnection con = new SqlConnection(@SqlSource);
                 con.Open();
 
-                SqlCommand command = new SqlCommand("INSERT INTO Users(Name, password) VALUES (@user, @pass)", con);
+                SqlCommand command = new SqlCommand("INSERT INTO Users(Name, password, email) VALUES (@user, @pass, @email)", con);
                 command.Parameters.AddWithValue("@user", username);
                 command.Parameters.AddWithValue("@pass", BCrypt.HashPassword(password, BCrypt.GenerateSalt()));
+                command.Parameters.AddWithValue("@email", email);
                 // int result = command.ExecuteNonQuery();
                 try
                 {
                     command.ExecuteNonQuery();
+                    Console.WriteLine("Succ");
                 }
                 catch (Exception e)
                 {

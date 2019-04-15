@@ -28,7 +28,7 @@ namespace Server
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            this.usersTableAdapter.Fill(this.databaseDataSet.Users);
+            //this.usersTableAdapter.Fill(this.databaseDataSet.Users);
             string hostName = Dns.GetHostName(); // retrive the Name of HOST  
             // Get the IP  
             string myIP = Dns.GetHostByName(hostName).AddressList[0].ToString();
