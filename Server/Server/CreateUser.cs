@@ -27,12 +27,17 @@ namespace Server
             bool succ = Database.CreateUser(username, password, email);
             if (succ)
             {
-                this.Close;
+                this.Close();
             }
             Console.WriteLine(succ);
         }
 
         private void CreateUser_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void passwordBox_TextChanged(object sender, EventArgs e)
         {
 
         }

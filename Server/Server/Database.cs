@@ -94,7 +94,7 @@ namespace Server
                 SqlConnection con = new SqlConnection(@SqlSource);
                 con.Open();
 
-                SqlCommand command = new SqlCommand("INSERT INTO Users(Name, password, email) VALUES (@user, @pass, @email)", con);
+                SqlCommand command = new SqlCommand("INSERT INTO Users(name, password, email) VALUES (@user, @pass, @email)", con);
                 command.Parameters.AddWithValue("@user", username);
                 command.Parameters.AddWithValue("@pass", BCrypt.HashPassword(password, BCrypt.GenerateSalt()));
                 command.Parameters.AddWithValue("@email", email);

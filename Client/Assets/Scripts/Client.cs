@@ -90,7 +90,7 @@ public class Client : MonoBehaviour
                 Send("Iam|" + clientName + "|" + password);
                 break;
             case "Authenticated":
-                SceneManager.LoadScene("ClientGameView");
+                SceneManager.LoadScene("ClientCharacterSelect");
                 break;
             case "UnitSpawned":
                 GameObject prefab = Resources.Load("Prefabs/OtherPlayer") as GameObject;

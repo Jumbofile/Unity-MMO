@@ -58,8 +58,11 @@
             // 
             this.passwordBox.Location = new System.Drawing.Point(12, 70);
             this.passwordBox.Name = "passwordBox";
+            this.passwordBox.PasswordChar = '*';
             this.passwordBox.Size = new System.Drawing.Size(199, 20);
             this.passwordBox.TabIndex = 2;
+            this.passwordBox.UseSystemPasswordChar = true;
+            this.passwordBox.TextChanged += new System.EventHandler(this.passwordBox_TextChanged);
             // 
             // label1
             // 
